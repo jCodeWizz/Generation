@@ -1,4 +1,4 @@
 .eclipse
 .metadata
 .metadata.*
-.metadata/
+/.metadata/
