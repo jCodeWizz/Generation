@@ -3,8 +3,6 @@ package dev.CodeWizz.engine.object;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
-import dev.CodeWizz.Luqara.world.tiles.Tile;
-import dev.CodeWizz.Luqara.world.tiles.TileID;
 import dev.CodeWizz.engine.GameContainer;
 import dev.CodeWizz.engine.Renderer;
 import dev.CodeWizz.engine.gfx.particles.Particle;
@@ -23,7 +21,6 @@ public abstract class GameObject {
 	protected int hurtTime,  offsetHitboxes = 2;
 	
 	protected ArrayList<ID> gameObjectCollisionID = new ArrayList<>();
-	protected ArrayList<TileID> tileCollisionID = new ArrayList<>();
 	protected ArrayList<String> tags = new ArrayList<>();
 	protected boolean canMove;
 
@@ -81,11 +78,6 @@ public abstract class GameObject {
 		
 		return false;
 	}
-	
-	public void collided(GameContainer gc, Tile tile) {
-		
-	}
-
 	public void tick(GameContainer gc) {
 		if(hurtTime > 0) {
 			hurtTime--;
@@ -134,59 +126,12 @@ public abstract class GameObject {
 					}
 				}
 			}
-			
-			if(hasCollision && !tileCollisionID.isEmpty()) {
-				for(Tile tile : gc.handler.tile) {
-					if(tileCollisionID.contains(tile.getId())) {
-						if(getBoundsBottom().intersects(tile.getBounds())) {
-							velY = 0;
-							falling = false;
-							jumping = false;
-							y = tile.getY() - h;
-							collided(gc, tile);
-						} else {
-							falling = true;
-						}
-						
-						if(getBoundsTop().intersects(tile.getBounds())) {
-							velY = 0;
-							falling = false;
-							jumping = false;
-							y = tile.getY() + (int) tile.getBounds().getHeight();
-							collided(gc, tile);
-						}
-						
-						if(getBoundsLeft().intersects(tile.getBounds())) {
-							velX = 0;
-							x = tile.getX() + 16;
-							collided(gc, tile);
-						}
-						
-						if(getBoundsRight().intersects(tile.getBounds())) {
-							velX = 0;
-							x = tile.getX() - w;
-							collided(gc, tile);
-						}
-					}
-				}
-			}
 		}
-		
-
 		WMath.clamb(velX, maxVelX, -maxVelX);
 		WMath.clamb(velY, maxVelY, -maxVelY);
 	}
 	
-	public boolean isTouching(GameContainer gc, Rectangle rec) {
-		for(Tile tile : gc.handler.tile) {
-			if(tileCollisionID.contains(tile.getId()) && rec.getBounds().intersects(tile.getBounds())) {
-				return true;
-			}
-		}
 		
-		return false;
-	}
-
 	public Rectangle getBoundsLeft() {
 		return new Rectangle((int)x, (int)y+offsetHitboxes, (int) (w/2), (int) h - offsetHitboxes*2);
 	}
@@ -351,14 +296,6 @@ public abstract class GameObject {
 
 	public void setGameObjectCollisionID(ArrayList<ID> gameObjectCollisionID) {
 		this.gameObjectCollisionID = gameObjectCollisionID;
-	}
-
-	public ArrayList<TileID> getTileCollisionID() {
-		return tileCollisionID;
-	}
-
-	public void setTileCollisionID(ArrayList<TileID> tileCollisionID) {
-		this.tileCollisionID = tileCollisionID;
 	}
 
 	public boolean isHasGravity() {

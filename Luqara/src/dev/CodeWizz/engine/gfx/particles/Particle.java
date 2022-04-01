@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import dev.CodeWizz.Luqara.world.tiles.Tile;
-import dev.CodeWizz.Luqara.world.tiles.TileID;
 import dev.CodeWizz.engine.GameContainer;
 import dev.CodeWizz.engine.Renderer;
 import dev.CodeWizz.engine.gfx.Image;
@@ -86,15 +84,6 @@ public class Particle {
 		x += velX;
 		y += velY;
 		
-		for (Tile tile : gc.handler.tile) {
-			if(tile.getId() == TileID.Solid) {
-				if (tile.getBounds().intersects(getBounds())) {
-					falling = false;
-					velY = 0;
-					velX = 0;
-				}
-			}
-		}
 		for (GameObject object : gc.handler.object) {
 			if (object.getBounds().intersects(getBounds()) && object.getId() == ID.Box) {
 				falling = false;

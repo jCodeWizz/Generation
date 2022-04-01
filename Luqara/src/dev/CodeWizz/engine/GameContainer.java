@@ -5,7 +5,6 @@ import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
 
-import dev.CodeWizz.Luqara.Player;
 import dev.CodeWizz.engine.gfx.Camera;
 import dev.CodeWizz.engine.gfx.light.Light;
 import dev.CodeWizz.engine.hud.HudManager;
@@ -29,7 +28,6 @@ public class GameContainer implements Runnable {
 
 	public Camera camera;
 	public Handler handler;
-	private Player player;
 	private Textures textures;
 	private Sounds sounds;
 	private NormalMaps normalMaps;
@@ -198,10 +196,6 @@ public class GameContainer implements Runnable {
 		return renderer;
 	}
 	
-	public Player getPlayer() {
-		return player;
-	}
-
 	public Input getInput() {
 		return input;
 	}
@@ -228,10 +222,6 @@ public class GameContainer implements Runnable {
 
 	public Window getWindow() {
 		return window;
-	}
-
-	public void setPlayer(Player player) {
-		this.player = player;
 	}
 
 	public HudManager gethMan() {
