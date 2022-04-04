@@ -25,8 +25,9 @@ public class HudManager {
 		}
 	}
 	
-	public void addComponent(IHudComponent a) {
+	public IHudComponent addComponent(IHudComponent a) {
 		comps.add(a);
+		return a;
 	}
 	
 	public void removeComponent(IHudComponent a) {

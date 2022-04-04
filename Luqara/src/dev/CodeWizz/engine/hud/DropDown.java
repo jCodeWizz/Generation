@@ -48,7 +48,7 @@ public class DropDown implements IHudComponent {
 			for(int i = 0; i < options.length; i++) {
 				r.fillRectUI(x, y + i*16 + 16, w, 16, 0xffffffff, Light.NONE);
 				r.drawText(options[i] + "", x + 2, y + i*16 + 16, 0xff000000);
-				r.drawRectUI(x + 2, y + i*16 + 16, w, 16, 0xff000000, Light.NONE);
+				r.drawRectUI(x, y + i*16 + 16, w, 16, 0xff000000, Light.NONE);
 			}
 		} else {
 			r.fillRectUI(x, y, w, 16, 0xffffffff, Light.NONE);

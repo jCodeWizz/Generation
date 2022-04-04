@@ -81,6 +81,44 @@ public class Renderer {
 		}
 
 	}
+	
+	public void drawLine(int color, int x0, int y0, int x1, int y1) {
+		int dx = Math.abs(x1 - x0);
+		int dy = Math.abs(y1 - y0);
+
+		int sx = x0 < x1 ? 1 : -1;
+		int sy = y0 < y1 ? 1 : -1;
+
+		int err = dx - dy;
+		int e2;
+		
+		x0 -= camX;
+		y0 -= camY;
+
+		x1 -= camX;
+		y1 -= camY;
+		
+		while (true) {
+
+			setPixel(x0, y0, color);
+			
+			if (x0 == x1 && y0 == y1) {
+				break;
+			}
+			
+			e2 = 2 * err;
+
+			if (e2 > -1 * dy) {
+				err -= dy;
+				x0 += sx;
+			}
+
+			if (e2 < dx) {
+				err += dx;
+				y0 += sy;
+			}
+		}
+	}
 
 	public void drawText(String text, float offX, int offY, int size) {
 		
