@@ -95,11 +95,11 @@ public class Chunk {
 		}
 		int yToGo = height[height.length - 1];
 
-		int coverage1 = Math.abs(lastY - riverpoint);
-		float dy1 = coverage1 / 6;
+		float coverage1 = Math.abs(lastY - riverpoint);
+		float dy1 = coverage1 / 6f;
 
-		int coverage2 = Math.abs(yToGo - riverpoint);
-		float dy2 = coverage2 / 6;
+		float coverage2 = Math.abs(yToGo - riverpoint);
+		float dy2 = coverage2 / 6f;
 
 		for (int i = 0; i < 7; i++) {
 			height[i] = (int) (lastY + i * dy1);
