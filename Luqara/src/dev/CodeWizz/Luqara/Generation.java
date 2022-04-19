@@ -38,7 +38,7 @@ public class Generation extends AbstractGame implements ISliderListener, IDropDo
 		
 		gc.gethMan().addComponent(new DropDown(140, 20, 100, 2, this, "Normal", "Debug"));
 		gc.gethMan().addComponent(new DropDown(260, 20, 100, 2, this, "Lines", "Tiles"));
-		gc.gethMan().addComponent(new DropDown(380, 20, 100, 2, this, "Per chunk biomes", "Leveling Noise"));
+		gc.gethMan().addComponent(new DropDown(380, 20, 175, 2, this, "Per chunk biomes", "Leveling Noise"));
 		
 		gc.gethMan().addComponent(new Button(20, 40, 100, 20, "Generate!") {
 			
